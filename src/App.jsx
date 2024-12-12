@@ -1,17 +1,15 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import GlobalContext from "./Context/GlobalContext"
-import DefaultLayout from "./Layout/DefaultLayout"
+import { BrowserRouter } from 'react-router-dom';
+import DefaultLayout from './Layout/DefaultLayout';
+import { GlobalProvider } from './Context/GlobalContext';
 
 function App() {
-
-
   return (
-    //<GlobalContext.Provider value={{}}>
-    <>
-      <DefaultLayout></DefaultLayout>
-    </>
-    //</GlobalContext.Provider>
-  )
+    <GlobalProvider>
+      <BrowserRouter>
+        <DefaultLayout />
+      </BrowserRouter>
+    </GlobalProvider>
+  );
 }
 
-export default App
+export default App;
