@@ -7,12 +7,9 @@ function App() {
 
   return (
     //<GlobalContext.Provider value={{}}>
-    <BrowserRouter>
-      <Routes>
-        <Route element={<DefaultLayout />}>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <>
+      <DefaultLayout></DefaultLayout>
+    </>
     //</GlobalContext.Provider>
   )
 }
