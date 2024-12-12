@@ -2,6 +2,19 @@
 
 import React from 'react';
 
+
+const flagMap = {
+    it: '/images/italia.png',
+    en: '/images/regno-unito.png',
+    fr: '/images/francia.png',
+    de: '/images/germania.png',
+    es: '/images/spagna.png',
+    jp: '/images/giappone.png',
+    zh: '/images/cina.png',
+    ru: '/images/russia.png',
+};
+
+
 export default function Card({ item, type }) {
     return (
         <section className="card">
