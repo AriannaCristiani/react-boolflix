@@ -1,7 +1,7 @@
 //La card dovrà mostrare gli elementi in base al tipo (film o serie) che gli verrà passato dal main
 
 import React from 'react';
-
+import { BASE_URI_IMG } from '../BaseUrl';
 
 const flagMap = {
     it: '/images/italia.png',
@@ -14,15 +14,15 @@ const flagMap = {
     ru: '/images/russia.png',
 };
 
-
 export default function Card({ item }) {
-    const { title, original_title, vote_average, original_language } = item;
+    const { title, original_title, vote_average, original_language, poster_path } = item;
 
-    const flagSrc = flagMap[original_language] || [original_language];
+    const flagSrc = flagMap[original_language] || '/images/placeholder-image.jpg';
 
     return (
         <section className="card">
             <h3>{title}</h3>
+            <img src={poster_path ? `${BASE_URI_IMG}/${poster_path}` : '/images/placeholder-image.jpg'} alt="" />
             <p>Titolo originale: {original_title}</p>
             <p>Lingua: <img src={flagSrc} alt={original_language} style={{ width: 30 }} /></p>
             <p>Voto: {vote_average}</p>
