@@ -5,8 +5,11 @@ export default function Header() {
     const { searchQuery, handleSearchChange, handleSearchSubmit } = useContext(GlobalContext);
 
     return (
-        <header>
-            <form onSubmit={handleSearchSubmit}>
+        <header className='header'>
+            <div>
+                <img className='logo' src="/images/Netflix-logo.png" />
+            </div>
+            <form onSubmit={handleSearchSubmit} className='form'>
                 <input
                     type="text"
                     placeholder="Cosa vuoi vedere?"

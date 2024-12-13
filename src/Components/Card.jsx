@@ -17,15 +17,24 @@ const flagMap = {
 export default function Card({ item }) {
     const { title, original_title, vote_average, original_language, poster_path } = item;
 
-    const flagSrc = flagMap[original_language] || '/images/placeholder-image.jpg';
+    const flagSrc = flagMap[original_language];
 
     return (
-        <section className="card">
-            <h3>{title}</h3>
-            <img src={poster_path ? `${BASE_URI_IMG}/${poster_path}` : '/images/placeholder-image.jpg'} alt="" />
-            <p>Titolo originale: {original_title}</p>
-            <p>Lingua: <img src={flagSrc} alt={original_language} style={{ width: 30 }} /></p>
-            <p>Voto: {vote_average}</p>
+        <section className="card-img">
+            <div>
+                <img
+                    src={poster_path ? `${BASE_URI_IMG}/${poster_path}` : '/images/placeholder-image.jpg'}
+                    alt=""
+                />
+            </div>
+            <div className="card">
+                <h3>{title}</h3>
+                <p>Titolo originale: {original_title}</p>
+                <p>Lingua: {original_language}
+                    <img src={flagSrc} alt={original_language} style={{ width: 30 }} />
+                </p>
+                <p>Voto: {vote_average}</p>
+            </div>
         </section>
     );
 }

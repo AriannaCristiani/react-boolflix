@@ -14,7 +14,7 @@ export default function Main() {
     return (
         <main>
             {movies.length > 0 && (
-                <section>
+                <section className='main'>
                     <h2>Film</h2>
                     <div className="cards-container">
                         {movies.map((movie) => (
@@ -24,10 +24,10 @@ export default function Main() {
                 </section>
             )}
 
-            <hr />
+            <div className='border'></div>
 
             {tvShows.length > 0 && (
-                <section>
+                <section className='main'>
                     <h2>Serie TV</h2>
                     <div className="cards-container">
                         {tvShows.map((tvShow) => (
