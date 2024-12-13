@@ -10,14 +10,14 @@ const flagMap = {
     de: '/images/germania.png',
     es: '/images/spagna.png',
     ja: '/images/giappone.png',
-    cn: '/images/cina.png',
+    zh: '/images/cina.png',
     ru: '/images/russia.png',
 };
 
 
 export default function Card({ item, type }) {
-    // immagine di placeholder se non siste un'immagine relativa alla sigla
-    const flagSrc = flagMap[item.original_language] || '/images/placeholder-image.jpg';
+
+    const flagSrc = flagMap[item.original_language] || [item.original_language];
 
     return (
         <section className="card">
