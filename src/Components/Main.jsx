@@ -15,7 +15,7 @@ export default function Main() {
         <main>
             {movies.length > 0 && (
                 <section className='main'>
-                    <h2>Film</h2>
+                    <h1>FILM</h1>
                     <div className="cards-container">
                         {movies.map((movie) => (
                             <Card key={movie.id} item={movie} />
@@ -28,7 +28,7 @@ export default function Main() {
 
             {tvShows.length > 0 && (
                 <section className='main'>
-                    <h2>Serie TV</h2>
+                    <h1>SERIE TV</h1>
                     <div className="cards-container">
                         {tvShows.map((tvShow) => (
                             <Card key={tvShow.id} item={tvShow} />

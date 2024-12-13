@@ -24,6 +24,7 @@ body {
   width: 342px;
   height: 513px;
   display: inline-block;
+  box-shadow: 1px 1px 8px 6px rgba(0, 0, 0, 0.582);
 }
 
 .card-img img {
@@ -49,6 +50,7 @@ body {
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  box-shadow: 1px 1px 8px 6px rgba(0, 0, 0, 0.582);
 }
 
 .card-img:hover img {
@@ -103,14 +105,15 @@ body {
 }
 
 /* main */
-.main h2 {
-  font-size: 40px;
+.main h1 {
+  font-size: 50px;
   margin-bottom: 20px;
   text-align: center;
   margin-top: 30px;
+  text-shadow: 3px 4px 6px rgba(102, 21, 21, 0.582);
 }
 
 .border {
   border: 1px solid rgb(168, 77, 77);
-  margin: 30px 60px 30px 60px;
+  margin: 30px 40px 30px 40px;
 }
