@@ -15,27 +15,17 @@ const flagMap = {
 };
 
 
-export default function Card({ item, type }) {
+export default function Card({ item }) {
+    const { title, original_title, vote_average, original_language } = item;
 
-    const flagSrc = flagMap[item.original_language] || [item.original_language];
+    const flagSrc = flagMap[original_language] || [original_language];
 
     return (
         <section className="card">
-            {type === 'movie' ? (
-                <>
-                    <h3>{item.title}</h3>
-                    <p>Titolo originale del film: {item.original_title}</p>
-                    <p>Lingua: <img src={flagSrc} alt={item.original_language} style={{ width: 30 }} /></p>
-                    <p>Voto: {item.vote_average}</p>
-                </>
-            ) : (
-                <>
-                    <h3>{item.name}</h3>
-                    <p>Nome originale della serie: {item.original_name}</p>
-                    <p>Lingua: <img src={flagSrc} alt={item.original_language} style={{ width: 30 }} /></p>
-                    <p>Voto: {item.vote_average}</p>
-                </>
-            )}
+            <h3>{title}</h3>
+            <p>Titolo originale: {original_title}</p>
+            <p>Lingua: <img src={flagSrc} alt={original_language} style={{ width: 30 }} /></p>
+            <p>Voto: {vote_average}</p>
         </section>
     );
 }

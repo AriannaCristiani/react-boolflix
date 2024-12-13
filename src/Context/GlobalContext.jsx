@@ -6,44 +6,59 @@ import { BASE_URI_TV } from '../BaseUrl';
 export const GlobalContext = createContext();
 
 export function GlobalProvider({ children }) {
-    const [movies, setMovies] = useState([]);
-    const [tvShows, setTvShows] = useState([]);
+    const [moviesAndShows, setMoviesAndShows] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
 
-    // Funzione per recuperare i dati dei film
-    function fetchMovies() {
-        if (searchQuery) {
-            axios.get(`${BASE_URI_MOVIE}&query=${searchQuery}`)
-                .then(res => {
-                    setMovies(res.data.results);
-                });
-        }
+    function fetchMoviesAndShows() {
+        axios.get(`${BASE_URI_MOVIE}`, {
+            params: {
+                query: searchQuery
+            }
+        }).then(res => {
+            //console.log(res.data); 
+            const movies = res.data.results.map(movie => ({
+                ...movie,
+                title: movie.title,
+                original_title: movie.original_title,
+                type: 'movie'
+            }));
+            setMoviesAndShows(prevState => [...prevState, ...movies]);
+        }).catch(err => {
+            console.error(err);
+            setMoviesAndShows(prevState => [...prevState, ...[]]);
+        });
+
+
+        axios.get(`${BASE_URI_TV}`, {
+            params: {
+                query: searchQuery
+            }
+        }).then(res => {
+            //console.log(res.data); 
+            const mappedSeries = res.data.results.map(tvShow => ({
+                ...tvShow,
+                title: tvShow.name,
+                original_title: tvShow.original_name,
+                type: 'tv'
+            }));
+            setMoviesAndShows(prevState => [...prevState, ...mappedSeries]);
+        }).catch(err => {
+            console.error(err);
+            setMoviesAndShows(prevState => [...prevState, ...[]]);
+        });
     }
 
-    // Funzione per recuperare i dati delle serie TV
-    function fetchTvShows() {
-        if (searchQuery) {
-            axios.get(`${BASE_URI_TV}&query=${searchQuery}`)
-                .then(res => {
-                    setTvShows(res.data.results);
-                });
-        }
-    }
-
-    // Funzione per recuperare l'inserimento dell'utente dall'input
     function handleSearchChange(e) {
         setSearchQuery(e.target.value);
     }
 
-    // Funzione per gestire il submit sul bottone del form
     function handleSearchSubmit(e) {
         e.preventDefault();
-        fetchMovies();
-        fetchTvShows();
+        fetchMoviesAndShows();
     }
 
     return (
-        <GlobalContext.Provider value={{ movies, tvShows, searchQuery, handleSearchChange, handleSearchSubmit, }}>
+        <GlobalContext.Provider value={{ moviesAndShows, searchQuery, handleSearchChange, handleSearchSubmit }}>
             {children}
         </GlobalContext.Provider>
     );

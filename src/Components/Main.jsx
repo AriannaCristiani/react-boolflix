@@ -5,25 +5,37 @@ import { GlobalContext } from '../Context/GlobalContext';
 import Card from './Card';
 
 export default function Main() {
-    const { movies, tvShows } = useContext(GlobalContext);
+    const { moviesAndShows } = useContext(GlobalContext);
+
+
+    const movies = moviesAndShows.filter(item => item.type === 'movie');
+    const tvShows = moviesAndShows.filter(item => item.type === 'tv');
 
     return (
         <main>
-            <h2>Risultati dei Film</h2>
-            <div className="cards-container">
-                {movies.map((movie) => (
-                    <Card key={movie.id} item={movie} type="movie" />
-                ))}
-            </div>
+            {movies.length > 0 && (
+                <section>
+                    <h2>Film</h2>
+                    <div className="cards-container">
+                        {movies.map((movie) => (
+                            <Card key={movie.id} item={movie} />
+                        ))}
+                    </div>
+                </section>
+            )}
 
             <hr />
 
-            <h2>Risultati delle Serie TV</h2>
-            <div className="cards-container">
-                {tvShows.map((tvShow) => (
-                    <Card key={tvShow.id} item={tvShow} type="tv" />
-                ))}
-            </div>
+            {tvShows.length > 0 && (
+                <section>
+                    <h2>Serie TV</h2>
+                    <div className="cards-container">
+                        {tvShows.map((tvShow) => (
+                            <Card key={tvShow.id} item={tvShow} />
+                        ))}
+                    </div>
+                </section>
+            )}
         </main>
     );
 }
